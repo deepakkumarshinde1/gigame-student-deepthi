@@ -1,11 +1,14 @@
+import Counter from "./Counter";
 import Text from "./Text";
 
 function App() {
   return (
     <>
-      <Text />
-      <Text />
-      <Text />
+      <Counter />
+      {/* <Counter /> */}
+      {/* <Text /> */}
+      {/* <Text />
+      <Text /> */}
     </>
   );
 }

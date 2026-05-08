@@ -7,6 +7,6 @@ import Text from "./Text.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <App />
-    <Text />
+    {/* <Text /> */}
   </StrictMode>,
 );
