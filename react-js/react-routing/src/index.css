@@ -109,3 +109,17 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.menu  li  a{
+  text-decoration: none;
+}
+
+.menu  li  .active{
+  text-decoration: underline;
+}
