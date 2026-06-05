@@ -1,8 +1,14 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { handelNewUserInput } from "./redux/slices/user.slice";
+import { addUsers } from "./redux/services/user.service";
+import Swal from "sweetalert2";
+import { useEffect } from "react";
 
 function NewUser() {
     const  dispatch = useDispatch();
+    const { newUser, isNewUserAdded, saveIndicator } = useSelector(
+      (state) => state.userReducer,
+    );
     let handel = (event) =>{ 
         let _event = {
             value:event.target.value,
@@ -10,12 +16,24 @@ function NewUser() {
         }
         dispatch(handelNewUserInput(_event));
     }
+
+    let submit = (event) =>{
+        event.preventDefault();
+        dispatch(addUsers(newUser));
+    }
+    useEffect(()=>{
+      isNewUserAdded && Swal.fire({
+        title: "Done!",
+        text: "Your registration was successful.",
+        icon: "success",
+      });
+    },[isNewUserAdded])
   return (
     <div className="container">
       <div className="form-box">
         <h2>User Registration</h2>
 
-        <form>
+        <form onSubmit={submit}>
           <div className="form-group">
             <label>Full Name</label>
             <input
@@ -56,7 +74,9 @@ function NewUser() {
             />
           </div>
 
-          <button type="submit">Register</button>
+          <button type="submit" disabled={saveIndicator}>
+            {saveIndicator ? "Saving..." : "Register"}
+          </button>
         </form>
       </div>
     </div>
